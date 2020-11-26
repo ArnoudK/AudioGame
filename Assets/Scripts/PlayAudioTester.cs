@@ -27,5 +27,9 @@ public class PlayAudioTester : MonoBehaviour
             playSound.Play();
         }
     }
+    private void OnDestroy()
+    {
+        AudioInputManager.Instance.OnSpeechResult -= Instance_OnSpeechResult;
+    }
 
 }

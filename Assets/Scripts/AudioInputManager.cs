@@ -24,6 +24,7 @@ public class AudioInputManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            
         }
         else
         {
@@ -43,14 +44,14 @@ public class AudioInputManager : MonoBehaviour
         m_DictationRecognizer.DictationResult += (text, confidence) =>
         {
             Debug.LogFormat("Dictation result: {0}", text);
-            m_Recognitions.text = text;
+            m_Recognitions.text = "Detected: " + text;
             OnSpeechResult?.Invoke(this, text);
         };
 
         m_DictationRecognizer.DictationHypothesis += (text) =>
         {
             Debug.LogFormat("Dictation hypothesis: {0}", text);
-            m_Hypotheses.text += text;
+            m_Hypotheses.text = "Detecting: " + text;
         };
 
         m_DictationRecognizer.DictationComplete += (completionCause) =>
@@ -87,6 +88,9 @@ public class AudioInputManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (m_DictationRecognizer.Status != SpeechSystemStatus.Running)
+        {
+            m_DictationRecognizer.Start();
+        }
     }
 }
