@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class StartGameScript : MonoBehaviour
 {
 
     [SerializeField]
-    string start = "start";
+    string startKeyWord = "start";
+
+    [SerializeField]
+    string storySceneName;
 
     [SerializeField]
     AudioSource audioSourceStart;
@@ -27,7 +30,10 @@ public class StartGameScript : MonoBehaviour
 
     private void Instance_OnSpeechResult(object sender, string e)
     {
-        throw new System.NotImplementedException();
+        if (e.Contains(startKeyWord))
+        {
+            SceneManager.LoadScene(storySceneName);
+        }
     }
 
     // Update is called once per frame

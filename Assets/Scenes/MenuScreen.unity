@@ -243,8 +243,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9e7f72b7aed7b44f8e12f0356905f60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  start: start
-  audioSourceStart: {fileID: 0}
+  startKeyWord: start
+  storySceneName: StoryScene
+  audioSourceStart: {fileID: 976948128}
 --- !u!1 &785919697
 GameObject:
   m_ObjectHideFlags: 0
