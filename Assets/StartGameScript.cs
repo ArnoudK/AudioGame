@@ -17,16 +17,13 @@ public class StartGameScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Invoke(nameof(StartAudio),2);
+        audioSourceStart.PlayDelayed(0.5f);
+
         AudioInputManager.Instance.OnSpeechResult += Instance_OnSpeechResult;
     }
 
-    private void StartAudio()
-    {
-        audioSourceStart.Play();
-    }
 
-    
+
 
     private void Instance_OnSpeechResult(object sender, string e)
     {
@@ -39,6 +36,6 @@ public class StartGameScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
