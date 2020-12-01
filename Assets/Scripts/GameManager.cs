@@ -56,8 +56,8 @@ public class GameManager : MonoBehaviour
     public enum REGISTEREDSCENES
     {
         MainMenu = 0,
-        StartStory = 1
-
+        StartStory = 1,
+        Jungle = 2
 
     }
 

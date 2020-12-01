@@ -12,6 +12,6 @@ public class StoryObjectLoadScene : StoryTestScript.StoryObject
 
     public override void TriggerAction()
     {
-        GameManager.Instance.LoadScene(sceneToLoad);
+        GameManager.Instance.LoadSceneDelayed(sceneToLoad, delay);
     }
 }

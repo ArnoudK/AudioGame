@@ -29,7 +29,8 @@ public class StartGameScript : MonoBehaviour
     {
         if (e.Contains(startKeyWord))
         {
-            SceneManager.LoadScene(storySceneName);
+            Debug.Log("loading scene in 3 seconds");
+            GameManager.Instance.LoadSceneDelayed(GameManager.REGISTEREDSCENES.StartStory, 3);
         }
     }
 
