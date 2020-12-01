@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.Windows.Speech;
 
 public class AudioInputManager : MonoBehaviour
@@ -11,11 +8,7 @@ public class AudioInputManager : MonoBehaviour
 
 
     private DictationRecognizer m_DictationRecognizer;
-    [SerializeField]
-    Text m_Recognitions;
 
-    [SerializeField]
-    Text m_Hypotheses;
 
     public static AudioInputManager Instance { private set; get; }
 
@@ -24,7 +17,7 @@ public class AudioInputManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            
+
         }
         else
         {
@@ -35,23 +28,28 @@ public class AudioInputManager : MonoBehaviour
 
     }
 
+    public event EventHandler<string> OnSpeechResult;
+    public event EventHandler<string> OnSpeechHypothesis;
+
+#if UNITY_EDITOR
+
+    public void InvokeOnSPeechResult(string e)
+    {
+        OnSpeechResult?.Invoke(this, e);
+    }
+#endif
     private void Start()
     {
-
-
         m_DictationRecognizer = new DictationRecognizer();
-
         m_DictationRecognizer.DictationResult += (text, confidence) =>
         {
-            Debug.LogFormat("Dictation result: {0}", text);
-            m_Recognitions.text = "Detected: " + text;
+
             OnSpeechResult?.Invoke(this, text);
         };
 
         m_DictationRecognizer.DictationHypothesis += (text) =>
         {
-            Debug.LogFormat("Dictation hypothesis: {0}", text);
-            m_Hypotheses.text = "Detecting: " + text;
+            OnSpeechHypothesis?.Invoke(this, text);
         };
 
         m_DictationRecognizer.DictationComplete += (completionCause) =>
@@ -69,8 +67,6 @@ public class AudioInputManager : MonoBehaviour
     }
 
 
-    public event EventHandler<string> OnSpeechResult;
-
 
 
 
@@ -83,14 +79,8 @@ public class AudioInputManager : MonoBehaviour
     }
 
 
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (m_DictationRecognizer.Status != SpeechSystemStatus.Running)
-        {
-            m_DictationRecognizer.Start();
-        }
-    }
 }
+
+
+
+

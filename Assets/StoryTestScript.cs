@@ -40,12 +40,16 @@ public class StoryTestScript : MonoBehaviour
 
         [SerializeField]
         AudioSource playSound;
+
         public string triggerKeyWord;
         public string notifyKeyWord;
 
         public void Triggered()
         {
-            playSound.PlayDelayed(0.5f);
+            if (playSound != null)
+            {
+                playSound.PlayDelayed(0.5f);
+            }
             TriggerAction();
         }
 

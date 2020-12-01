@@ -8,17 +8,9 @@ public class StoryObjectLanding : StoryTestScript.StoryObject
     public override void TriggerAction()
     {
         Debug.Log("TRIGGERED Landing");
+        //TODO everything else :)
+    
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+   
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-}
